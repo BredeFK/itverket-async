@@ -21,7 +21,10 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-configuration-processor")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+    runtimeOnly("org.jetbrains.kotlinx:kotlinx-coroutines-reactive")
 
     implementation("org.springframework.kafka:spring-kafka")
 

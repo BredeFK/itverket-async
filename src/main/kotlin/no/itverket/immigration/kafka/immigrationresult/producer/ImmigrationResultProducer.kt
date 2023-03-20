@@ -8,6 +8,7 @@ import org.apache.kafka.clients.producer.ProducerRecord
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.*
+import kotlin.time.Duration
 
 @Service
 class ImmigrationResultProducer(
@@ -24,12 +25,18 @@ class ImmigrationResultProducer(
         immigrationResultProducerProperties.producerProperties
     )
 
-    fun publishImmigrant(result: ImmigrationResultDto) {
+    fun publishImmigrant(result: ImmigrationResultDto, duration: Duration) {
         producer.send(
             ProducerRecord(
                 immigrationResultProducerProperties.topic,
                 groupId,
-                objectMapper.writeValueAsString(result)
+                objectMapper.writeValueAsString(
+                    if (duration.inWholeMilliseconds > 10000) result.copy(
+                        permitted = false,
+                        reason = ImmigrationProcessResult.GOT_TIRED_OF_WAITING
+                    )
+                    else result
+                )
             )
         )
     }

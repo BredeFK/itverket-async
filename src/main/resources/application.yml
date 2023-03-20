@@ -1,14 +1,19 @@
+host-address: 10.14.5.160
+registry-port: 8081
+team-name: placeholder
+
 kafka:
+  port: 29092
   immigrant:
     consumer:
       topic: itverket-immigration-0
-      ip-address: 192.168.10.132
-      port: 29092
-      group-id: placeholder
+      ip-address: ${host-address}
+      port: ${kafka.port}
+      group-id: ${team-name}
   immigration-result:
     producer:
       topic: itverket-immigration-result
-      ip-address: 192.168.10.132
-      port: 29092
-      clientId: placeholder
+      ip-address: ${host-address}
+      port: ${kafka.port}
+      clientId: ${team-name}
       acks-config: all

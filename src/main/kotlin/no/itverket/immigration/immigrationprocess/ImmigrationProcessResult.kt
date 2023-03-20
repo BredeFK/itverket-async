@@ -10,5 +10,6 @@ enum class ImmigrationProcessResult(val permitted: Boolean) {
     VISA_IMMIGRANT(true),
     UNREGISTERED_VISA_IMMIGRANT(false),
     INVALID_EMPLOYER(false),
-    INVALID_VISA_IMAGE(false)
+    INVALID_VISA_IMAGE(false),
+    GOT_TIRED_OF_WAITING(false)
 }
