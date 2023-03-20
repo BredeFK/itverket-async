@@ -24,6 +24,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-configuration-processor")
 
     implementation("org.springframework.kafka:spring-kafka")
+
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 }
 
 tasks.test {
