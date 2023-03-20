@@ -28,6 +28,6 @@ internal class ImmigrantConsumer(
         val processId = UUID.fromString(message.key())
         val immigrant: ImmigrantDto = jacksonObjectMapper().readValue(message.value())
         val result = ImmigrationProcess.startImmigrationProcess(processId, immigrant).process()
-        producer.publishImmigrant(processId, result)
+        producer.publishImmigrant(result)
     }
 }
