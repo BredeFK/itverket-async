@@ -1,11 +1,11 @@
-package no.itverket.kafka.consumer
+package no.itverket.immigration.kafka.immigrant.consumer
 
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties(prefix = "kafka.immigrant.consumer")
-class ImmigrantConsumerProperties(
+internal class ImmigrantConsumerProperties(
     ipAddress: String,
     port: String,
     groupId: String
@@ -15,5 +15,6 @@ class ImmigrantConsumerProperties(
         ConsumerConfig.GROUP_ID_CONFIG to groupId,
         ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
         ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
+        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "earliest"
     )
 }

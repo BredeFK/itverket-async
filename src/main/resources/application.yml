@@ -1,7 +1,14 @@
 kafka:
   immigrant:
     consumer:
-      topic: itverket-immigration
+      topic: itverket-immigration-0
       ip-address: 192.168.10.132
       port: 29092
       group-id: placeholder
+  immigration-result:
+    producer:
+      topic: itverket-immigration-result
+      ip-address: 192.168.10.132
+      port: 29092
+      clientId: placeholder
+      acks-config: all

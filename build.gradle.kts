@@ -35,5 +35,5 @@ tasks.withType<KotlinCompile> {
 }
 
 application {
-    mainClass.set("no.itverket.ApplicationKt")
+    mainClass.set("no.itverket.immigration.ApplicationKt")
 }
