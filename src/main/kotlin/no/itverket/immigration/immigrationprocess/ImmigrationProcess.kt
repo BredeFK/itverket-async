@@ -19,8 +19,12 @@ class ImmigrationProcess(
         runBlocking {
             launch { paperWork() }
         }
+
+        val processResult = validateFace();
+
+
         //bruk immigrant feltet til å finne riktig ImmigrationProcessResult
-        return result(ImmigrationProcessResult.RESIDENT)
+        return result(processResult)
     }
 
     private fun result(result: ImmigrationProcessResult) = ImmigrationResultDto(
@@ -29,4 +33,11 @@ class ImmigrationProcess(
 
     //no touchy por favor
     private suspend fun paperWork() = delay(5000)
+
+    private fun validateFace(): ImmigrationProcessResult {
+        return if (immigrant.isValidVisa())
+            immigrant.getVisaProcessResult()
+        else
+            immigrant.getPassportProcessResult()
+    }
 }
