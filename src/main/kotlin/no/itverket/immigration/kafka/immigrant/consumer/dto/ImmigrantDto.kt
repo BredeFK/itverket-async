@@ -1,7 +1,6 @@
 package no.itverket.immigration.kafka.immigrant.consumer.dto
 
 import no.itverket.immigration.immigrationprocess.ImmigrationProcessResult
-import no.itverket.immigration.immigrationprocess.ValidEmployer
 import java.util.*
 
 data class ImmigrantDto(
@@ -19,13 +18,7 @@ data class ImmigrantDto(
 
     fun getVisaProcessResult(): ImmigrationProcessResult {
         return if (visa?.image == face) {
-            if (ValidEmployer.values()
-                    .any { validEmployer -> validEmployer.employerName == visa.employer }
-            ) {
-                ImmigrationProcessResult.VISA_IMMIGRANT
-            } else {
-                ImmigrationProcessResult.INVALID_EMPLOYER
-            }
+            visa.processEmployer()
         } else {
             ImmigrationProcessResult.INVALID_VISA_IMAGE
         }
